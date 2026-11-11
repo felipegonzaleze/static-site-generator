@@ -12,9 +12,12 @@ class HTMLNode:
         if self.props is None:
             return ""
         html_attributes: str = ""
-        for k, v in self.props:
-            html_attributes += f" {k}={v} "
+        for k, v in self.props.items():
+            html_attributes += f' {k}="{v}"'
         return html_attributes
 
     def __repr__(self):
-        return f"HTMLNode({self.tag}, {self.value}, {self.children} {self.props})" 
+        return f"HTMLNode({self.tag}, {self.value}, {self.children} {self.props})"
+
+    def __eq__(self, other):
+        return self.tag == other.tag and self.value == other.value and self.children == other.children and self.props == other.props
