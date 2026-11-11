@@ -1,16 +1,17 @@
 from enum import Enum
 
+class TextType(Enum):
+    PLAIN_TEXT = "plain"
+    BOLD_TEXT = "bold"
+    CODE_TEXT = "code"
+    LINK_TEXT = "link"
+    IMAGE_TEXT = "image"
 class TextNode:
-    class TextType(Enum):
-        PLAIN_TEXT = "plain"
-        BOLD_TEXT = "bold"
-        CODE_TEXT = "code"
-        LINK_TEXT = "link"
-        IMAGE_TEXT = "image"
+
         
     def __init__(self, text, text_type, url = None):
         self.text = text
-        self.text_type = self.TextType[text_type]
+        self.text_type = text_type
         self.url = url
 
     def __eq__(self, other):
