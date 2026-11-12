@@ -38,7 +38,6 @@ class TestTextNode(unittest.TestCase):
         test_node_1 = TextNode("This is text with a ", TextType.PLAIN_TEXT)
         test_node_2 = TextNode("code block", TextType.CODE_TEXT)
         test_node_3 = TextNode(" word", TextType.PLAIN_TEXT)
-        print(f"Lista: {new_nodes}")
         self.assertEqual(new_nodes, [test_node_1, test_node_2, test_node_3])
 
 
