@@ -1,5 +1,5 @@
 import unittest
-from classes.textnode import TextNode, TextType, text_node_to_html_node, split_nodes_delimiter
+from classes.textnode import *
 class TestTextNode(unittest.TestCase):
     def test_bold_text_eq(self):
         node = TextNode("This is a text node", TextType.BOLD_TEXT)
@@ -40,7 +40,21 @@ class TestTextNode(unittest.TestCase):
         test_node_3 = TextNode(" word", TextType.PLAIN_TEXT)
         self.assertEqual(new_nodes, [test_node_1, test_node_2, test_node_3])
 
-
+    def test_split_images(self):
+        node = TextNode(
+            "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and another ![second image](https://i.imgur.com/3elNhQu.png)",
+            TextType.PLAIN_TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with an ", TextType.PLAIN_TEXT),
+                TextNode("image", TextType.IMAGE_TEXT, "https://i.imgur.com/zjjcJKZ.png"),
+                TextNode(" and another ", TextType.PLAIN_TEXT),
+                TextNode("second image", TextType.IMAGE_TEXT, "https://i.imgur.com/3elNhQu.png"),
+            ],
+            new_nodes,
+        )
 
 if __name__ == "__main__":
     unittest.main()
