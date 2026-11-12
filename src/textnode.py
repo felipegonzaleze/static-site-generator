@@ -39,3 +39,23 @@ def text_node_to_html_node(text_node: TextNode) -> LeafNode:
             return LeafNode("a", text_node.text, {"href": text_node.url})
         case TextType.IMAGE_TEXT:
             return LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
+
+def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: TextType) -> list[TextNode]:
+    new_nodes = []
+    for node in old_nodes:
+        if node.text_type != TextType.PLAIN_TEXT:
+            new_nodes.append(node)
+        else:
+            count = 0
+            for c in node.text:
+                if c == delimiter:
+                    count += 1
+            if count % 2 != 0:
+                raise Exception("ERROR: Invalid Syntax")
+            result = node.text.split(delimiter)
+            for i in range(len(result)):
+                if i == 1:
+                    new_nodes.append(TextNode(result[i], text_type))
+                else:
+                    new_nodes.append(TextNode(result[i], TextType.PLAIN_TEXT))
+    return new_nodes
