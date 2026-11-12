@@ -1,5 +1,5 @@
 import unittest
-from textnode import TextNode, TextType, text_node_to_html_node, split_nodes_delimiter
+from classes.textnode import TextNode, TextType, text_node_to_html_node, split_nodes_delimiter
 class TestTextNode(unittest.TestCase):
     def test_bold_text_eq(self):
         node = TextNode("This is a text node", TextType.BOLD_TEXT)

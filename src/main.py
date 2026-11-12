@@ -1,4 +1,4 @@
-from textnode import TextNode
+from classes.textnode import TextNode
 
 def main():
     example = TextNode("hola", "PLAIN_TEXT", "https://boot.dev")

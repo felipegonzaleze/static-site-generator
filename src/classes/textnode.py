@@ -1,6 +1,6 @@
 from __future__ import annotations
 from enum import Enum
-from leafnode import LeafNode
+from classes.leafnode import LeafNode
 
 
 class TextType(Enum):
