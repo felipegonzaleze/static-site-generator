@@ -1,3 +1,4 @@
 #!/bin/bash
 
-python3 -m unittest discover -s src
+cd src
+python3 -m unittest discover -s tests
